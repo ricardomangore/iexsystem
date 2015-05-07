@@ -29,11 +29,46 @@ function iex_procesa_cotizacion(){
 
 
 include_once(ABSPATH . 'wp-load.php');
+switch($cotizacion['servicio']){
+	
+	case 'sa' : $servicio = 'aéreo';
+				break;
+	case 'sm' : $servicio = 'marítimo';
+				break;
+	case 'st' : $servicio = 'terrestre';
+				break;
+	case 'da' : $servicio = 'despacho aduanal';
+				break;
+	case 'sc' : $servicio = 'seguro';
+				break;
+	case 'al' : $servicio = 'almacenage';
+				break;
+
+}
 
 $to = array('ricardomangore@gmail.com');
 $headers = 'Reply-to: Ricardo Rincón de la Torre'; 
-$subject = 'Asunto de prueba';
-$body = 'Mensaje de prueba';
+$subject = 'Cotización';
+$body = 'Se solicita atender la cotización de ' . $cotizacion['nombre'] . ' ' . $cotizacion['apellidos'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['telefono'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['mail'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['servicio'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['origen'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['destino'] . '<br/>';
+$body .= 'teléfono: ' . $cotizacion['descripcion'] . '<br/>';
+
+
+
+$to_client = array($cotizacion['mail']);
+$headers_client = 'Reply-to: Intermodal Express'; 
+$subject_client = 'Confirmación de Recepción de Cotización';
+$body_client = 'Estimado (a)' . $cotizacion['nombre'] . ' ' . $cotizacion['apellidos'] . ': Agradecemos su interés en nuestros servicios de logística.Como especialistas en transportación multimodal, será un placer atender su carga. Un ejecutivo se pondrá en contacto con usted a la brevedad, Saludos cordiales. XXX';
+$body_client .= 'teléfono: ' . $cotizacion['telefono'] . '<br/>';
+$body_client .= 'teléfono: ' . $cotizacion['mail'] . '<br/>';
+$body_client .= 'teléfono: ' . $cotizacion['servicio'] . '<br/>';
+$body_client .= 'teléfono: ' . $cotizacion['origen'] . '<br/>';
+$body_client .= 'teléfono: ' . $cotizacion['destino'] . '<br/>';
+$body_client .= 'teléfono: ' . $cotizacion['descripcion'] . '<br/>';
 
 //Filtro para indicar que email debe ser enviado en modo HTML
 add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
