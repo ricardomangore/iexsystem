@@ -37,7 +37,8 @@
  	//Acciones efectuadas durante la activación del plugin
 	global $wpdb;
 	
-	$sql  = "--
+	$sql  = "
+--
 -- Table structure for table `iex_country`
 --
 
@@ -116,39 +117,7 @@ INSERT INTO `iex_port` VALUES (1,1,'MXVER','Veracruz'),(2,1,'MXATM','Altamira'),
 /*!40000 ALTER TABLE `iex_port` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `iex_sea_route`
---
 
-DROP TABLE IF EXISTS `iex_sea_route`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `iex_sea_route` (
-  `id_sea_route` int(11) NOT NULL AUTO_INCREMENT,
-  `id_port` bigint(20) NOT NULL,
-  `id_vessel` bigint(20) NOT NULL,
-  `voyage_code` varchar(50) NOT NULL,
-  `eta` date NOT NULL,
-  `type` enum('i','e') DEFAULT NULL,
-  `route_negotiated` tinyint(1) DEFAULT NULL,
-  `iex_route_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_sea_route`,`id_port`,`id_vessel`),
-  KEY `fk_port_idx` (`id_port`),
-  KEY `fk_vessel_idx` (`id_vessel`),
-  CONSTRAINT `fk_port` FOREIGN KEY (`id_port`) REFERENCES `iex_port` (`id_port`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vessel` FOREIGN KEY (`id_vessel`) REFERENCES `iex_vessel` (`id_vessel`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `iex_sea_route`
---
-
-LOCK TABLES `iex_sea_route` WRITE;
-/*!40000 ALTER TABLE `iex_sea_route` DISABLE KEYS */;
-INSERT INTO `iex_sea_route` VALUES (1,1,1,'AS514A','2015-04-12','i',0,''),(2,2,1,'AS514A','2015-04-11','i',0,''),(3,1,1,'AS514A','2015-03-31','i',0,''),(4,2,1,'AS514A','2015-04-01','i',0,''),(5,1,2,'AS515A','2015-04-14','i',0,''),(6,2,2,'AS515A','2015-04-14','i',0,''),(7,1,2,'AS515A','2015-04-08','i',0,''),(8,2,2,'AS515A','2015-04-09','i',0,''),(9,1,3,'AS516A','2015-04-21','i',0,''),(10,2,3,'AS516A','2015-04-22','i',0,''),(11,1,3,'AS516A','2015-04-14','i',0,''),(12,1,3,'AS516A','2015-04-16','i',0,'');
-/*!40000 ALTER TABLE `iex_sea_route` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `iex_shipping`
@@ -205,7 +174,43 @@ LOCK TABLES `iex_vessel` WRITE;
 INSERT INTO `iex_vessel` VALUES (1,1,356904000,9129873,'PA|Panama','MSC ALEXA','MSC ALEXA AS514A','Container ship'),(2,1,636091996,9232890,'LR|Liberia','MSC ENGLAND','MSC ENGLAND AS515A','Container ship'),(3,1,210516000,9360245,'CY|Cyprus','CAPE MARTIN','CAPE MARTIN AS516A','Container ship'),(4,1,353895000,7614381,'PA|Panama','MSC ERMINIA','MSC ERMINIA AS517A','Container ship'),(5,1,352309000,8410940,'PA|Panama','MSC NATALIA','MSC NATALIA AS518A','Container ship'),(6,1,636091916,9481520,'LR|Liberia','PORTO','PORTO AS519A','Container ship'),(7,1,352870000,9251705,'PA|Panama','MSC FLORENTINA','MSC FLORENTINA MF515R','Container ship'),(8,1,636014642,9152284,'LR|Liberia','SWAZILAND','SWAZILAND 516R','Container ship'),(9,1,636014640,9162485,'LR|Liberia','LESOTHO','LESOTHO 517R','Container ship'),(10,1,636014641,9152296,'LR|Liberia','MOZAMBIQUE','MOZAMBIQUE 520R','Container ship'),(11,1,255805597,9085558,'XM|Madeira (PT)','MAERSK KARLSKRONA','MAERSK KARLSKRONA 515R','Container ship'),(12,1,351248000,9251690,'PA|Panama','MSC LUDOVICA','MSC LUDOVICA NG516R','Container ship'),(13,1,255805596,9085546,'XM|Madeira (PT)','MAERSK KLEVEN','MAERSK KLEVEN 517R','Container ship'),(14,1,240721000,9107887,'GR|Greece','MAERSK KAWASAKI','MAERSK KAWASAKI 518R','Container ship'),(15,1,240722000,9085522,'GR|Greece','MAERSK KURE','MAERSK KURE 519R','Container ship'),(16,1,255805595,9085534,'XM|Madeira (PT)','MAERSK KOTKA','MAERSK KOTKA 520R','Container ship'),(17,1,636016231,9629469,'LR|Liberia','SWANSEA','SWANSEA','Container ship'),(18,1,636014648,9447897,'LR|Liberia','TEMPANOS','TEMPANOS','Container ship'),(19,1,636092199,9444730,'LR|Liberia','SANTA CATARINA','SANTA CATARINA','Cargo ship'),(20,1,710000987,0,'BR|Brazil','CORCOVADO','CORCOVADO','Passenger ship'),(21,1,636092317,9430375,'LR|Liberia','SANTA TERESA','SANTA TERESA','Container ship'),(22,1,253380000,9285689,'LU|Luxembourg','MSC SEATTLE','MSC SEATTLE','Container ship'),(23,1,367572480,0,'US|United States','SANTA CLARA','SANTA CLARA','Yacht'),(24,1,636016664,9687540,'LR|Liberia','COCHRANE','COCHRANE','Cargo ship'),(25,1,636016665,9687552,'LR|Liberia','CAUQUENES','CAUQUENES','Cargo ship'),(26,1,34700982,8609589,'MQ|Martinique','MSC ANNICK','MSC ANNICK','Container ship'),(27,1,229455000,9244934,'MT|Malta','MAERSK KINGSTON','MAERSK KINGSTON','Cargo ship'),(28,1,636014643,9168324,'LR|Liberia','ZAMBIA','ZAMBIA','Container ship'),(29,1,240725000,9085560,'GR|Greece','MAERSK KOKURA','MAERSK KOKURA','Container ship'),(30,5,357493000,9168855,'PA|Panama','EVER URANUS','EVER URANUS','Container ship'),(31,5,229557000,9477804,'MT|Malta','HS BAFFIN','HS BAFFIN','Container ship'),(32,13,636091579,9337030,'LR|Liberia','OM IRIDIUM','OM IRIDIUM','Container ship'),(33,13,253436000,9256389,'LU|Luxembourg','HANSA FREYBURG','HANSA FREYBURG','Container ship'),(34,13,305289000,9116204,'AG|Antigua and Barbuda','CARIBE NAVIGATOR','CARIBE NAVIGATOR','Container ship'),(35,7,477639300,9484546,'HK|Hong Kong SAR of China','CAP INES','CAP INES','Container ship'),(36,7,211738000,9283227,'DE|Germany','MONTE SARMIENTO','MONTE SARMIENTO','Container ship'),(37,7,211611000,9283203,'DE|Germany','MONTE PASCOAL','MONTE PASCOAL','Container ship'),(38,7,255805593,9283186,'XM|Madeira (PT)','MONTE CERVANTES','MONTE CERVANTES','Container ship'),(39,7,211771000,9283239,'DE|Germany','MONTE VERDE','MONTE VERDE','Container ship'),(40,7,218744000,9348065,'DE|Germany','MONTE ALEGRE','MONTE ALEGRE','Container ship'),(41,7,219016144,0,'DK|Denmark','BIRK','BIRK','Tug'),(42,7,211262630,9143568,'DE|Germany','LONDON EXPRESS','LONDON EXPRESS','Container ship'),(43,7,636090671,9232084,'LR|Liberia','PHOENIX I','PHOENIX I','Container ship'),(44,7,538005818,9287895,'MH|Marshall Islands','PINEHURST KONTOR','PINEHURST KONTOR','Container ship'),(45,7,211335760,9193317,'DE|Germany','ROTTERDAM EXPRESS','ROTTERDAM EXPRESS','Container ship'),(46,5,235068031,9246401,'GB|United Kingdom','COSCO FELIXSTOWE','COSCO FELIXSTOWE','Cargo ship'),(47,5,563982000,9604134,'SG|Singapore','EVER LIVELY','EVER LIVELY','Container ship'),(48,5,411041818,0,'None|None','JIN HE','JIN HE','Cargo ship'),(49,5,564071000,9168843,'SG|Singapore','EVER UNIFIC','EVER UNIFIC','Container ship'),(50,5,564438000,9116606,'SG|Singapore','EVER UNIQUE','EVER UNIQUE','Container ship'),(51,5,356349000,9116577,'PA|Panama','EVER ULTRA','EVER ULTRA','Container ship'),(52,5,357101000,9400306,'PA|Panama','COSCO FUKUYAMA','COSCO FUKUYAMA','Container ship'),(53,5,371062000,9300324,'PA|Panama','COSCO TIANJIN','COSCO TIANJIN','Container ship'),(54,5,477712300,9625413,'HK|Hong Kong SAR of China','KOTA LEGIT','HS Baffin','Container ship'),(55,5,477518400,9625401,'HK|Hong Kong SAR of China','KOTA LEKAS','HS Baffin','Cargo ship'),(56,5,636091704,9312652,'LR|Liberia','HS SMETANA','HS Baffin','Container ship'),(57,5,210905000,9395123,'CY|Cyprus','ARSOS','ARSOS','Container ship'),(58,5,636091600,9433157,'LR|Liberia','BF COPACABANA','BF COPACABANA','Container ship'),(59,5,253548000,9241449,'LU|Luxembourg','HANSA KIRKENES','HANSA KIRKENES','Cargo ship'),(60,14,566730000,9457634,'SG|Singapore','WAN HAI 513','WAN HAI 513','Container ship'),(61,14,566886000,9457658,'SG|Singapore','WAN HAI 516','WAN HAI 516','Container ship'),(62,14,566942000,9457660,'SG|Singapore','WAN HAI 517','WAN HAI 517','Container ship'),(63,14,566642000,9457622,'SG|Singapore','WAN HAI 512','WAN HAI 512','Container ship'),(64,14,566510000,9455296,'SG|Singapore','WAN HAI 511','WAN HAI 511','Container ship'),(65,14,414203000,9120786,'CN|China','JING HE','JING HE','Container ship'),(66,17,636091082,9317913,'LR|Liberia','SERENA P','SERENA P','Container ship'),(67,17,477076300,9301770,'HK|Hong Kong SAR of China','NEW DELHI EXPRESS','NEW DELHI EXPRESS','Container ship'),(68,17,636015674,9157703,'LR|Liberia','MSC KORONI','MSC KORONI','Container ship'),(69,17,211681430,0,'DE|Germany','WOGE','WOGE','Sailing ship'),(70,10,255805660,9351218,'XM|Madeira (PT)','TASMAN STRAIT','TASMAN STRAIT','Container ship'),(71,10,304261000,9138238,'AG|Antigua and Barbuda','HELENE J','HELENE J','Container ship'),(72,10,636091081,9357872,'LR|Liberia','FRITZ REUTER','FRITZ REUTER','Container ship');
 /*!40000 ALTER TABLE `iex_vessel` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;";
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Table structure for table `iex_sea_route`
+--
+
+DROP TABLE IF EXISTS `iex_sea_route`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `iex_sea_route` (
+  `id_sea_route` int(11) NOT NULL AUTO_INCREMENT,
+  `id_port` bigint(20) NOT NULL,
+  `id_vessel` bigint(20) NOT NULL,
+  `voyage_code` varchar(50) NOT NULL,
+  `eta` date NOT NULL,
+  `type` enum('i','e') DEFAULT NULL,
+  `route_negotiated` tinyint(1) DEFAULT NULL,
+  `iex_route_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_sea_route`,`id_port`,`id_vessel`),
+  KEY `fk_port_idx` (`id_port`),
+  KEY `fk_vessel_idx` (`id_vessel`),
+  CONSTRAINT `fk_port` FOREIGN KEY (`id_port`) REFERENCES `iex_port` (`id_port`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vessel` FOREIGN KEY (`id_vessel`) REFERENCES `iex_vessel` (`id_vessel`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `iex_sea_route`
+--
+
+LOCK TABLES `iex_sea_route` WRITE;
+/*!40000 ALTER TABLE `iex_sea_route` DISABLE KEYS */;
+INSERT INTO `iex_sea_route` VALUES (1,1,1,'AS514A','2015-04-12','i',0,''),(2,2,1,'AS514A','2015-04-11','i',0,''),(3,1,1,'AS514A','2015-03-31','i',0,''),(4,2,1,'AS514A','2015-04-01','i',0,''),(5,1,2,'AS515A','2015-04-14','i',0,''),(6,2,2,'AS515A','2015-04-14','i',0,''),(7,1,2,'AS515A','2015-04-08','i',0,''),(8,2,2,'AS515A','2015-04-09','i',0,''),(9,1,3,'AS516A','2015-04-21','i',0,''),(10,2,3,'AS516A','2015-04-22','i',0,''),(11,1,3,'AS516A','2015-04-14','i',0,''),(12,1,3,'AS516A','2015-04-16','i',0,'');
+/*!40000 ALTER TABLE `iex_sea_route` ENABLE KEYS */;
+UNLOCK TABLES;
+
+";
 				
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );

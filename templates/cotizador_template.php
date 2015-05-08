@@ -11,8 +11,8 @@
 				</div>
 				<div class="column2">
 					<div class="column_inner">
-						<div class="contact_form" id="iex_cotiza_form">
-							<form id="iex_cotiza_form" methos="post">
+						<div class="contact_form" id="iex_content_cotiza_form">
+							<form id="iex_cotiza_form" method="get">
 								<input id="url_pl" type="hidden" value="<?php echo IEX_URL; ?>"/>
 								<input id="url_aa" type="hidden" value="<?php echo admin_url("admin-ajax.php"); ?>"/>
 								<div class="two_columns_50_50 clearfix">

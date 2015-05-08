@@ -51,15 +51,15 @@ $headers = 'Reply-to: Ricardo Rincón de la Torre';
 $subject = 'Cotización';
 $body = 'Se solicita atender la cotización de ' . $cotizacion['nombre'] . ' ' . $cotizacion['apellidos'] . '<br/>';
 $body .= 'teléfono: ' . $cotizacion['telefono'] . '<br/>';
-$body .= 'teléfono: ' . $cotizacion['mail'] . '<br/>';
-$body .= 'teléfono: ' . $cotizacion['servicio'] . '<br/>';
-$body .= 'teléfono: ' . $cotizacion['origen'] . '<br/>';
-$body .= 'teléfono: ' . $cotizacion['destino'] . '<br/>';
-$body .= 'teléfono: ' . $cotizacion['descripcion'] . '<br/>';
+$body .= 'mail: ' . $cotizacion['mail'] . '<br/>';
+$body .= 'servicio: ' . $servicio . '<br/>';
+$body .= 'origen: ' . $cotizacion['origen'] . '<br/>';
+$body .= 'destino: ' . $cotizacion['destino'] . '<br/>';
+$body .= 'descripción: ' . $cotizacion['descripcion'] . '<br/>';
 
 
 
-$to_client = array($cotizacion['mail']);
+$to_client = array($cotizacion['nombre'] . ' ' . $cotizacion['apellidos'] );
 $headers_client = 'Reply-to: Intermodal Express'; 
 $subject_client = 'Confirmación de Recepción de Cotización';
 $body_client = 'Estimado (a)' . $cotizacion['nombre'] . ' ' . $cotizacion['apellidos'] . ': Agradecemos su interés en nuestros servicios de logística.Como especialistas en transportación multimodal, será un placer atender su carga. Un ejecutivo se pondrá en contacto con usted a la brevedad, Saludos cordiales. XXX';
@@ -82,9 +82,13 @@ add_filter('wp_mail_from','mqw_email_from');
 $result = wp_mail( $to, $subject, $body, $headers );
 
 
+
+$result_client = wp_mail( $to_client, $subject_client, $body_client, $headers_client );
+
     header("Constent-type: application/json");
 	//echo json_encode($cotizacion);
-	echo json_encode(array('result' => ABSPATH));
+	$cotizacion['servicio'] = $servicio;
+	echo json_encode($cotizacion);
 	exit;
 	
 }
