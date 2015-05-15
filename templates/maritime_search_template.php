@@ -1,4 +1,10 @@
 <div class="panel panle-default">
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 	<form id="iex_route_finder_form" name="iex_route_finder_form" action="" method="GET">
 		<input id="url_pl" type="hidden" value="<?php echo IEX_URL; ?>"/>
 		<input id="url_aa" type="hidden" value="<?php echo admin_url("admin-ajax.php"); ?>"/>

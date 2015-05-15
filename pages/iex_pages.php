@@ -15,13 +15,12 @@ function iex_load_scripts_to_cotizador(){
 	
 	wp_enqueue_script('select2_js', IEX_URL . '/js/plugins/select2/select2.full.min.js');
 	
-	//wp_register_script( 'bootstrap-js', IEX_URL . '/js/bootstrap/js/bootstrap.min.js', array('jquery'), "1", false );
-	//wp_enqueue_script( 'bootstrap-js' );
+	wp_register_script( 'bootstrap-js', IEX_URL . '/js/bootstrap/js/bootstrap.min.js', array('jquery'), "1", false );
+	wp_enqueue_script( 'bootstrap-js' );
 	
 	wp_register_script( 'iex_cotizador-js', IEX_URL . '/js/libraries/iex_cotizador.js', array('jquery'), "1", false );
 	wp_enqueue_script( 'iex_cotizador-js' );		
-	
-	
+
 }
 
 /**

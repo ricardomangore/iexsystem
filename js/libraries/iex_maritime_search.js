@@ -2,6 +2,18 @@
 
 
 var $url_aa;
+var $url_pl;
+
+function createTablePorts(data){
+    var strHtml = '<table class="table table-stripped"><thead><th><img src="'+ $url_pl+'/images/anchor.png" width="20" height="20" style="margin-right:10px"/>PUERTO</th><th><img src="'+ $url_pl+'/images/calendar.jpg" width="20" height="20" style="margin-right:10px"/>ETA</th></thead><tbody>';
+	$.each(data,function(index,value){
+		strHtml +='<tr><td>'+ value.puerto +'</td><td>'+ value.eta +'</td></tr>'; 
+	});
+	strHtml += '<tbody></table>';
+	return strHtml;
+}
+
+
 /**
  * 
  */
@@ -10,10 +22,16 @@ function createTable(data){
 	if(data.error != undefined){
 		var str = 'No se encontraron itinerarios';
 	}else{
-		var str = '<table class="table table-hover">';
-		str += '<thead><tr><th>Viaje</th><th>Buque</th><th>Puerto</th><th>ETA</th></tr></thead>';
+		var str = '<table class="table">';
+		str += '<thead><tr><th></th></thead>';
 		$.each(data,function(index,value){
-			str += '<tr><td>' + value.viaje + '</td><td>' + value.buque + '</td><td>' + value.puerto + '</td><td>' + value.eta + '</td></tr>';
+			str += '<tr><td><div><img src="'+ $url_pl+'/images/vessel.png" width="60" height="60" style="margin-rigth: 10px"/></div><div><h2>' + value.buque +'</h2><h3><small> Viaje: '+ value.viaje +'</small></h3>';
+			str += '<form name="form_'+value.viaje +'">';
+			//str +=    '<input type="hidden"/>';
+			//str +=    '<button type="button" class="btn btn-primary">Cotizar</button>';
+			str += '</form>';
+			str += '</td><td><p></div>'+ createTablePorts(value.puertos) +'</p></td></tr>';
+			console.log(value.puertos.puerto);
 		});
 	}
 	str += '</table>';
@@ -101,7 +119,7 @@ function btnEnviarCotizacionHandler(event){
 $(document).on('ready',function(event){
 	
 	$url_aa = $('input#url_aa').val();
-	
+	$url_pl = $('input#url_pl').val();
 	
 	initSelectPuerto('get_puertodb',function (data) {
 		var retorno = [];
