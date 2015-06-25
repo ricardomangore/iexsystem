@@ -332,6 +332,19 @@ function btn_add_naviera_listener(event){
 
 }
 
+
+
+function btnEditNavieraListener(event){
+	event.preventDefault();
+	console.log(event.data.form.serialize());
+	$.ajax({
+		url : event.data.form.find('input#url_aa').val(),
+		type : 'POST',
+		dataType : 'json',
+		
+	});
+}
+
 /**
  * Carga cuando todo el documento esta listo 
  */
@@ -349,6 +362,22 @@ $(document).ready(function(event){
      */
     if($('#naviera_table').length){
     		var $navieraTable = $('#naviera_table').DataTable();
+			$('#naviera_table tbody').on( 'click', 'tr', function () {
+		        if ( $(this).hasClass('selected') ) {//Si la clase 'selected' esta asignada
+		            $(this).removeClass('selected');          
+		        }
+		        else {//Si la clase 'selected' no esta asignada
+		        	dataNaviera = $navieraTable.row($navieraTable.row(this).index()).data();
+		        	$('#btn_edit_naviera').removeAttr('disabled');
+		            $('#btn_delete_naviera').removeAttr('disabled');
+		            $('input#id_naviera').attr('value',dataNaviera[0]);
+		            $('input#naviera').attr('value',dataNaviera[1]);
+		            $navieraTable.$('tr.selected').removeClass('selected');
+		            $(this).addClass('selected');
+		        }
+		    } );
+		    
+		    
     		initDataTableNavieras($('form[name=iex_navieras_admin_form]').find('input#url_aa').val(), $navieraTable);
     }
     if($('#puerto_table').length){
@@ -504,6 +533,7 @@ $(document).ready(function(event){
 	});
 
 	$('button#btn_add_naviera').on('click',{'table': $navieraTable, 'form': $formNaviera}, btn_add_naviera_listener);
+	$('button#btn_edit_naviera').on('click',{'form' : $formNaviera},btnEditNavieraListener);
 	$('button#btn_add_puerto').on('click',{'table': $puertoTable, 'form': $formPuerto}, btnAddPuertoListener);
 	$('button#btn_add_buque').on('click',{'table': $buqueTable, 'form': $formBuque}, btnAddBuqueListener);
 	$('button#btn_add_ruta').on('click',{'table': $rutaTable, 'form': $formRuta}, btnAddRutaListener);

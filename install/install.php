@@ -9,7 +9,7 @@
  register_activation_hook(IEX_FILE_PATH,'iex_activate'); 
  function iex_activate(){
  	//Opciones personalizadas del plugin
- 	add_option('iex_options', array(
+ 	/*add_option('iex_options', array(
 			'oag_webservice_options' => array(
 				'username'                           => '',
 				'password'                           => '',
@@ -32,10 +32,69 @@
 				'json_vessel_url' => '',
 				'json_port_url'   => ''
 			)
+	));*/
+	
+	/**
+	 * Opciones para conectarse al Web Service de OAG  
+	 */
+	add_option('iex_oag_account',array(
+					'username' => '',
+					'password' => '',
+					'wsdl'     => 'http://ondemand.oagcargo.com/CBCargoWebServicePublic/CBCargoWSPubliclPort?wsdl'
+	));
+	
+	/**
+	 * Opciones de configuración para la búsqueda de vuelos Directos 
+	 */
+	add_option('iex_direct_flight', array(
+					'origen_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
+					'destination_criteria_location_type' => 'M',   //Especifica el tipo de punto de llegada, 'M' - ciudad, 'A' - airopuerto
+					'request_time'						 => '12:00:00', //Encuentra todos los vuelos validos desde el momento de la petición
+					'carrier1_criteria'					 => '***', //Lista de códigos IATA/ICAO de aerolineas, solo vuelos de la lista pueden ser retornados. Si no es especificado algún valor, retorna todos los vuelos
+					'sort_order'						 => 'E', //Determina el orden de los vuelos retornados 'D'- departure date/time, 'A' arrival date/time, 'E' elapsed time order
+					'include_freighter'					 => ' ',  //Configuración para incluir aviones de carga, ' ' Espacio en blanco solo aviones de pasajeros, 'F'-aviones de carga, 'B'- aviones de carga y pasajero
+					'include_road_feeder_service'        => ' ', //Configuración para incluir camiones, ' '-Espacio en blanco solo vuelos de pasajeros, 'R'-Solo servicio de camiones, 'B'-camiones y vuelos de pasajeros
+					'wide_to_narrow_indicator'			 => '', // Ajusta el filtro para ampli, angosto o amplio y angosto. Filtro generico que aplica para vuelos de carga, pasajeros y Camiones. ' '-wide and narrow(default), 'W' solo wide service, 'N'- solo narrow service
+					'cargo_carrier_dupe_priority'		 => 'false' //Ajusta cargo IATA sobre passenger IATA
+	));
+	
+	/**
+	 * Opciones de configuración para la búsqueda de vuelos con Escalas 
+	 */	
+	add_option('iex_connections_flight', array(
+					'origen_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
+					'destination_criteria_location_type' => 'M',   //Especifica el tipo de punto de llegada, 'M' - ciudad, 'A' - airopuerto
+					'via1_criteria'                      => '***', //Código IATA que especifica el punto de conexión, este puede ser una ciudad o un aéropuerto, '***'- cualquier via
+					'via1_criteria_location_type'        => 'M', //Especifica el tipo de via 'M'-ciudad, 'A'-aéropuerto
+					'carrier1_criteria'                  => '***',//'***'-todas las aérolineas que operan en la ciudad o el aéropuerto son consideradas en la búsqueda, lista de codigos IATA/ICAO separados por coma para ser considerados ne la búsqueda
+					'carrier2_criteria'                  => '***',//'***'-todas las aérolineas que operan en la ciudad o el aéropuerto son consideradas en la búsqueda del vuelo subsecuente, lista de codigos IATA/ICAO separados por coma para ser considerados ne la búsqueda
+					'request_time'						 => '12:00:00', //Encuentra todos los vuelos validos desde el momento de la petición
+					'enable_online'						 => 'false',//Si esta opcion esta marcada como 'true' el vuel ode conexión debe ser el mismo que el de la primer aérolinea
+					'inter_airport_connections'          => 'false',//Si esta marcado como verdadero, el vuelo de conexión es atraves de la misma ciudad pero de diferentes aéropuertos
+					'low_cost_connections_indicator'     => '',//Indica si se requieren conexiones de bajo costo, ''-valor vacio es el valor por default, regresa conexiones que siguen los estandares requeridos por la industria, 'L'-conexiones de bajo costo, 'B'-ambas
+					'max_ct1'							 => '400', //Default '400' (4 horas), tiempo máximo entre conexiones
+					'max_elapsed_time'					 => '2400', //Default '2400' (24 horas), tiempo máximo transcurrido de la conexión general
+					'max_circuity'						 => '', //Default '170' (porcentaje).Es el radio de la distancia viajada en un aconexión, es representado como un valor en porcentaje
+					'override_min_ct1'					 => '',//Ofrece la posibilidad de anular el tiempo mínimo de conexión en Via1, el formato es HHMM, si no se establece el valor, esusado el valor estandar de la industria, de l abase de datos de MCT de OAG, si el valor es establecido se aplica a todas las conexiones
+					'max_singles_route'        			 => '25', //el número de rutas más rápidas de tiempo transcurrido estimado en cuenta para la construcción de conexión. Un par de ciudades puede tener 200 rutas en las que la mayoría son muy lento y no es útil. Este parámetro establece las rutas más rápidas top 'n' para las conexiones individuales. Si no se establece el valor por defecto es de 25 rutas. Si se establece, el valor tiene un tope de 25 rutas.
+					'sort_order'						 => 'E', //Determina el orden de los vuelos retornados 'D'- departure date/time, 'A' arrival date/time, 'E' elapsed time order
+					'include_freighter'					 => ' ',  //Configuración para incluir aviones de carga, ' ' Espacio en blanco solo aviones de pasajeros, 'F'-aviones de carga, 'B'- aviones de carga y pasajero
+					'include_road_feeder_service'        => ' ', //Configuración para incluir camiones, ' '-Espacio en blanco solo vuelos de pasajeros, 'R'-Solo servicio de camiones, 'B'-camiones y vuelos de pasajeros
+					'wide_to_narrow_indicator'			 => '', // Ajusta el filtro para ampli, angosto o amplio y angosto. Filtro generico que aplica para vuelos de carga, pasajeros y Camiones. ' '-wide and narrow(default), 'W' solo wide service, 'N'- solo narrow service
+					'cargo_carrier_dupe_priority'		 => 'false' //Ajusta cargo IATA sobre passenger IATA
+					
+	));
+	
+	/**
+	 * Opciones de configuración para conectarse a los servicios de FleetMon 
+	 */
+	add_option('iex_fleetmon_options',array(
+					'json_vessel_url' => '',
+					'json_port_url'   => ''
 	));
  	
  	//Acciones efectuadas durante la activación del plugin
-	global $wpdb;
+ 	global $wpdb;
 	
 	$sql  = "
 --
@@ -226,7 +285,11 @@ UNLOCK TABLES;
  register_deactivation_hook(IEX_FILE_PATH, 'iex_deactivate');
  function iex_deactivate(){
  	//Elimina opciones
- 	delete_option( 'iex_options' );
+ 	delete_option('iex_options');
+ 	delete_option( 'iex_oag_account' );
+ 	delete_option( 'iex_direct_flight' );
+ 	delete_option( 'iex_connections_flight' );
+ 	delete_option( 'iex_fleetmon_options' ); 	
  	//Acciones efectuadas durante la desactivación del plugin
  	global $wpdb;
 	$string = $wpdb->query( "DROP TABLE IF EXISTS iex_iata_code, iex_sea_route, iex_vessel, iex_port, iex_shipping, iex_country" );

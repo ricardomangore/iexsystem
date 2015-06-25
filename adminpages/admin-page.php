@@ -2,7 +2,9 @@
 
 
 /**
- * Agrega una entrada de menú en el Dashboar y en el menú settings
+ * iex_create_menu()
+ * Agrega las entradas al menú settings del dashboard de wordpress
+ * 
  */
 add_action('admin_menu', 'iex_create_menu');
 function iex_create_menu(){
@@ -49,7 +51,9 @@ function iex_create_menu(){
 
  
  /**
- * Estilos para el adminsitrador
+ * iex_settings_css()
+ * Agrega las plantillas de estilos a los menus
+ *
  */
  //add_action('admin_print_styles', 'iex_settings_css');
  function iex_settings_css(){
@@ -58,7 +62,8 @@ function iex_create_menu(){
 	wp_enqueue_style('select2_css', IEX_URL . '/js/plugins/select2/select2.min.css'); 	
  }
 /**
- * Scripts para el adminsitrador
+ * iex_settings_js()
+ * Agrega los scripts JS a las diferentes opcione sdel menú
  */
  //add_action('admin_print_scripts', 'iex_settings_js');
  function iex_settings_js(){
@@ -81,6 +86,7 @@ function iex_create_menu(){
  *******************************************************************************************************************/
 
 /**
+ * iex_settings_page()
  * Despliega la vista para de la página IEX Settings 
  */
 function iex_settings_page(){
@@ -103,6 +109,7 @@ function iex_settings_page(){
 }
 
 /**
+ * iex_admin_init()
  * Registra nuevas opciones de Ajustes para el plugin
  */
 add_action('admin_init', 'iex_admin_init');
@@ -142,9 +149,9 @@ function iex_admin_init(){
 /**
  * Sección de configuración de FleetMon Service
  */
-function iex_fleetmon_section_text(){
+ function iex_fleetmon_section_text(){
 	echo '<p>Ingrese los par&aacute;metros de configuración de FleetMon Service</p>';
-}
+ }
  
  
  /**
@@ -375,6 +382,7 @@ function iex_navieras_page(){
 			<form id="iex_navieras_admin_form" name="iex_navieras_admin_form">
 				<input id="url_pl" type="hidden" value="<?php echo IEX_URL; ?>"/>
 				<input id="url_aa" type="hidden" value="<?php echo admin_url("admin-ajax.php"); ?>"/>
+				<input type="hidden" id="id_naviera" name="id_naviera"/>
 				<table>
 					<tr>
 						<td>Naviera</td>
@@ -382,6 +390,7 @@ function iex_navieras_page(){
 					</tr>
 					<tr>
 						<td><button id="btn_add_naviera">Agregar</button></td>
+						<td><button id="btn_edit_naviera" disabled>Editar</button> <button id="btn_delete_naviera" style="margin-left: 2px;" disabled>Eliminar</button></td>
 					</tr>
 				</table>
 				

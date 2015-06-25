@@ -72,18 +72,23 @@ function iex_searcher_en_function(){
  add_shortcode('iex_maritime_search','iex_maritime_search_function');
  function iex_maritime_search_function(){
  	
-	wp_enqueue_style('jquery-ui_css', IEX_URL . '/js/jquery-ui/jquery-ui.min.css');
-	wp_enqueue_script('jquery-ui_js', IEX_URL . '/js/jquery-ui/jquery-ui.min.js');	
+	//wp_enqueue_style('jquery-ui_css', IEX_URL . '/js/jquery-ui/jquery-ui.min.css');
+	//wp_enqueue_script('jquery-ui_js', IEX_URL . '/js/jquery-ui/jquery-ui.min.js');	
 	
 	
-	wp_register_style( 'bootstrap-style', IEX_URL . '/js/bootstrap/css/bootstrap.min.css');
-	wp_enqueue_style( 'bootstrap-style' );
+	wp_enqueue_style('select2_css', IEX_URL . '/js/plugins/select2/select2.min.css'); 
 	
-	wp_enqueue_style('select2_css', IEX_URL . '/js/plugins/select2/select2.min.css'); 	
+	wp_register_style( 'bootstrap-style', IEX_URL . '/js/bootstrap/css/bootstrap.css');
+	wp_enqueue_style( 'bootstrap-style' );	
+	
+
+	
 
 	wp_register_script('jquery-1_11_2', IEX_URL . '/js/jquery-1_11_2.js',array('jquery'),"1.11.2",false);
 	wp_enqueue_script('jquery-1_11_2');
 	
+	wp_register_script( 'bootstrap-js', IEX_URL . '/js/bootstrap/js/bootstrap.min.js', array('jquery'), "1", false );
+	wp_enqueue_script( 'bootstrap-js' );
 	
 	wp_enqueue_script('select2_js', IEX_URL . '/js/plugins/select2/select2.full.min.js');
 	
