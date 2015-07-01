@@ -12,7 +12,7 @@ function iex_oag_connection_flight_page(){
 	?>
 		<div class="wrap">
 			<?php screen_icon(); ?>
-			<h2>OAG Web Service Account</h2>	
+			<h2>OAG Connection Flights HHH</h2>	
 			<form action="options.php" method="post">
 				
 				<?php

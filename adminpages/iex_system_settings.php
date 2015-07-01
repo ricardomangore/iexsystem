@@ -92,7 +92,7 @@ function iex_fleetmon_account_section_text(){
   */
  function iex_oag_username_input( $args ){
  	$option = get_option('iex_oag_account');
-	echo "<input type='text' id='iex_option_username_input' name='iex_oag_account[username]' value='{$option['username']}' />";
+	echo "<input type='text' id='iex_oag_username' name='iex_oag_account[username]' value='{$option['username']}' />";
  }
  
  /**
@@ -102,7 +102,7 @@ function iex_fleetmon_account_section_text(){
   */
  function iex_oag_password_input( $args ){
  	$option = get_option('iex_oag_account');
-	echo "<input type='password' id='iex_option_username_input' name='iex_oag_account[password]' value='{$option['password']}' />";
+	echo "<input type='password' id='iex_oag_password' name='iex_oag_account[password]' value='{$option['password']}' />";
  }
  
  /**
@@ -111,7 +111,7 @@ function iex_fleetmon_account_section_text(){
   */
   function iex_oag_wsdl_input( $args ){
   	$option = get_option('iex_oag_account');
-	echo "<input type='text' id='iex_option_username_input' name='iex_oag_account[wsdl]' value='{$option['wsdl']}' />";
+	echo "<input type='text' id='iex_oag_wsdl' name='iex_oag_account[wsdl]' value='{$option['wsdl']}' />";
   }
   
   /**
