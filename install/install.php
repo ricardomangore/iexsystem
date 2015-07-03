@@ -9,30 +9,6 @@
  register_activation_hook(IEX_FILE_PATH,'iex_activate'); 
  function iex_activate(){
  	//Opciones personalizadas del plugin
- 	/*add_option('iex_options', array(
-			'oag_webservice_options' => array(
-				'username'                           => '',
-				'password'                           => '',
-				'wsdl'                               => 'http://ondemand.oagcargo.com/CBCargoWebServicePublic/CBCargoWSPubliclPort?wsdl',
-				'origen_criteria_location_type'      => 'M',
-				'destination_criteria_location_type' => 'M',
-				'via1_criteria'                      => '***',
-				'via1_criteria_location_type'        => 'M',
-				'carrier1_criteria'                  => '***',
-				'carrier2_criteria'                  => '***',
-				'act_percentage_routing'             => '0',
-				'max_circuity'                       => '170',
-				'short_oder'                         => 'D',
-				'include_freighter'                  => '',
-				'include_road_feder_service'         => '', 
-				'wide_to_narrow_indicator'           => ''
-			),
-			
-			'fleetmon_options'       => array(
-				'json_vessel_url' => '',
-				'json_port_url'   => ''
-			)
-	));*/
 	
 	/**
 	 * Opciones para conectarse al Web Service de OAG  
