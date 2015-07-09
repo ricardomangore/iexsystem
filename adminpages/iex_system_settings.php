@@ -25,7 +25,7 @@ function iex_system_settings_page(){
 				<?php
 					//Carga los valores del arreglo iex_oag_account instanciado en el script install.php
 				    settings_fields('iex_oag_account');
-					settings_fields('iex_fleetmon_options');
+					//settings_fields('iex_fleetmon_options');
 					
 					//Carga la secciones registradas a nombre de 'iex_settings_page' 
 					do_settings_sections('iex_system_settings_page');
@@ -49,19 +49,41 @@ add_action('admin_init', 'iex_system_init');
 function iex_system_init(){
 	//registramos una configuración                       
 	register_setting('iex_oag_account','iex_oag_account','iex_oag_account_clean');
-	register_setting('iex_fleetmon_options','iex_fleetmon_options','iex_fleetmon_account_clean');
+	/*register_setting('iex_fleetmon_options','iex_fleetmon_options','iex_fleetmon_clean');*/
 	
 	//Agrega una sección OAG Account a la página
 	add_settings_section('iex_oag_account_section','OAG Account','iex_oag_account_section_text','iex_system_settings_page');
 	//Agrega la sección de Fleetmon a la página
 	/*add_settings_section('iex_fleetmon_account_section','FleetMon Account','iex_fleetmon_account_section_text', 'iex_system_settings_page');*/
 	
+	$options = get_option('iex_oag_account');
+	$options_fleetmon = get_option('iex_fleetmon_options');
 	//Se agregan los campos de la página
-	add_settings_field('iex_oad_wsdl', 'WSDL', 'iex_oag_wsdl_input','iex_system_settings_page','iex_oag_account_section');
-	add_settings_field('iex_oag_username', 'User Name', 'iex_oag_username_input', 'iex_system_settings_page', 'iex_oag_account_section');
-	add_settings_field('iex_oag_password', 'Password', 'iex_oag_password_input', 'iex_system_settings_page', 'iex_oag_account_section');
-	/*add_settings_field('iex_fleetmon_vessel_url', 'URL Vessel', 'iex_fleetmon_vessel_url_input', 'iex_system_settings_page','iex_fleetmon_account_section');
-	add_settings_field('iex_fleetmon_port_url', 'URL Port', 'iex_fleetmon_port_url_input', 'iex_system_settings_page','iex_fleetmon_account_section');*/
+	add_settings_field('iex_oag_wsdl', 'WSDL', 'iex_create_input_text','iex_system_settings_page','iex_oag_account_section',array(
+		'id'	=> 'iex_oag_wsdl',
+		'name'  => 'iex_oag_account[wsdl]',
+		'param' => $options['wsdl']
+	));
+	add_settings_field('iex_oag_username', 'User Name', 'iex_create_input_text', 'iex_system_settings_page', 'iex_oag_account_section',array(
+		'id'    => 'iex_oag_username',
+		'name'  => 'iex_oag_account[username]',
+		'param' => $options['username']
+	));
+	add_settings_field('iex_oag_password', 'Password', 'iex_create_input_password', 'iex_system_settings_page', 'iex_oag_account_section',array(
+		'id'    => 'iex_oag_password',
+		'name'  => 'iex_oag_account[password]',
+		'param' => $options['password']
+	));
+	/*add_settings_field('iex_fleetmon_vessel_url', 'URL Vessel', 'iex_create_input_text', 'iex_system_settings_page','iex_fleetmon_account_section',array(
+		'id'	=> 'iex_fleetmon_vessel_url',
+		'name'  => 'iex_fleetmon_options[json_vessel_url]',
+		'param' => $options_fleetmon['json_vessel_url']
+	));
+	add_settings_field('iex_fleetmon_port_url', 'URL Port', 'iex_create_input_text', 'iex_system_settings_page','iex_fleetmon_account_section',array(
+		'id'	=> 'iex_fleetmon_port_url',
+		'name'  => 'iex_fleetmon_options[json_port_url]',
+		'param' => $options_fleetmon['json_port_url']	
+	));*/
 }
 
 
@@ -138,6 +160,10 @@ function iex_fleetmon_account_section_text(){
  * Función de validación de opciones personalziadas
  */
 function iex_oag_account_clean( $option ){
+	return $option;
+}
+
+function iex_fleetmon_clean( $option ){
 	return $option;
 }
 

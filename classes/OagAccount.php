@@ -6,10 +6,10 @@ class OagAccount{
 	private $wsdl;
 	
 	
-	public function __construct($username, $password, $wsdl){
-		$this->$username = $username;
-		$this->password  = $password;
-		$this->wsdl      = $wsdl;
+	public function __construct($options){
+		$this->username  = $options['username'];
+		$this->password  = $options['password'];
+		$this->wsdl      = $options['wsdl'];
 	}
 	
 	
@@ -29,4 +29,12 @@ class OagAccount{
 		$this->password = $password;
 	}
 	
-}
+	public function getWsdl(){
+		return $this->wsdl;
+	}
+	
+	public function setWsdl($wsdl){
+		$this->wsdl = $wsdl;
+	}
+	
+}//Finaliza la clase

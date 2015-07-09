@@ -32,6 +32,9 @@ if(!defined('ABSPATH')){
 //Incluye los archivos del Plugin
 require IEX_DIR_PATH . '/install/install.php';
 //require IEX_DIR_PATH . '/adminpages/admin-page.php';iex_oag_webservice_settings.php
+require IEX_DIR_PATH . '/classes/OagAccount.php';
+require IEX_DIR_PATH . '/classes/DirectFlight.php';
+require IEX_DIR_PATH . '/classes/ConnectionFlight.php';
 require IEX_DIR_PATH . '/classes/OAGSoapClient.php';
 require IEX_DIR_PATH . '/adminpages/iex_system_settings_fields.php';
 require IEX_DIR_PATH . '/adminpages/iex_system_settings.php';

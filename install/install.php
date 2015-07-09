@@ -23,7 +23,7 @@
 	 * Opciones de configuración para la búsqueda de vuelos Directos 
 	 */
 	add_option('iex_direct_flight', array(
-					'origen_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
+					'origin_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
 					'destination_criteria_location_type' => 'M',   //Especifica el tipo de punto de llegada, 'M' - ciudad, 'A' - airopuerto
 					'request_time'						 => '12:00:00', //Encuentra todos los vuelos validos desde el momento de la petición
 					'carrier1_criteria'					 => '***', //Lista de códigos IATA/ICAO de aerolineas, solo vuelos de la lista pueden ser retornados. Si no es especificado algún valor, retorna todos los vuelos
@@ -38,7 +38,7 @@
 	 * Opciones de configuración para la búsqueda de vuelos con Escalas 
 	 */	
 	add_option('iex_connections_flight', array(
-					'origen_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
+					'origin_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
 					'destination_criteria_location_type' => 'M',   //Especifica el tipo de punto de llegada, 'M' - ciudad, 'A' - airopuerto
 					'via1_criteria'                      => '***', //Código IATA que especifica el punto de conexión, este puede ser una ciudad o un aéropuerto, '***'- cualquier via
 					'via1_criteria_location_type'        => 'M', //Especifica el tipo de via 'M'-ciudad, 'A'-aéropuerto
@@ -270,3 +270,4 @@ UNLOCK TABLES;
  	global $wpdb;
 	$string = $wpdb->query( "DROP TABLE IF EXISTS iex_iata_code, iex_sea_route, iex_vessel, iex_port, iex_shipping, iex_country" );
  }
+

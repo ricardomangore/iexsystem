@@ -58,14 +58,14 @@
 	add_settings_section('iex_oag_direct_flight_section','OAG Direct Flights','iex_oag_direct_flight_section_text','iex_oag_direct_flight_page');
 	
 	//Agrega campos del formulario
-	add_settings_field('iex_origen_criteria_location_type','Origen Criteria Type','iex_create_option_select','iex_oag_direct_flight_page','iex_oag_direct_flight_section',array(
-		'id'           => 'iex_origen_criteria_location_type',
-		'name'         => 'iex_direct_flight[origen_criteria_location_type]',
+	add_settings_field('iex_origin_criteria_location_type','Origen Criteria Type','iex_create_option_select','iex_oag_direct_flight_page','iex_oag_direct_flight_section',array(
+		'id'           => 'iex_origin_criteria_location_type',
+		'name'         => 'iex_direct_flight[origin_criteria_location_type]',
 		'select_opt'   => array(
 			'met_area' => 'M',
 			'airport'  => 'A'
 		), 
-		'param' => $options['origen_criteria_location_type']
+		'param' => $options['origin_criteria_location_type']
 	));
 	add_settings_field('iex_destination_criteria_location_type','Destination Criteria Type','iex_create_option_select','iex_oag_direct_flight_page','iex_oag_direct_flight_section',array(
 		'id'           => 'iex_destination_criteria_location_type',

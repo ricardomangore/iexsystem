@@ -7,15 +7,26 @@
  * Obtiene los vuelos directos 
  */
 function iex_get_direct_flights(){
-    $obj_soap = new OAGSoapClient(array(
-		'wsdl' => 'sdfsd',
-		'username' => 'asdf',
-		'password' => 'asdfffff'
-	));	
-	$account = get_option('iex_oag_account');
-	header('Content-Type: application/json');
-	echo json_encode(array('nombre' => $obj_soap->getUserName(), 'wsdl' => $obj_soap->getPassword(), 'password' => $obj_soap->getWSDL()));
-	exit;
+	$oag_account_opt   = get_option('iex_oag_account');
+	$direct_flight_opt = get_option('iex_direct_flight');
+
+	$oagAccount   = new OagAccount($oag_account_opt);
+	$directFlight = new DirectFlight($direct_flight_opt);
+	$directFlight->setOriginCriteria('CHI');
+	$directFlight->setDestinationCriteria('LON');
+	$directFlight->setRequestDate('2015-07-09');
+	$oagSoapClient = new OAGSoapClient($oagAccount);
+
+	/*try{
+		$oagSoapClient->searchDirectFlights($directFlight);
+		header('Content-Type: application/json');
+		exit;
+	}catch(Exception $e){
+		header('Content-Type: application/json');
+		echo json_encode(array('Error' => $e->getMessage()));
+		exit;
+	}*/
+ 
 }
 
 add_action( 'wp_ajax_iex_get_direct_flights', 'iex_get_direct_flights' );

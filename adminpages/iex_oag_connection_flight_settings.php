@@ -52,14 +52,14 @@ function iex_oag_connections_flight_page(){
 	
 	$options = get_option('iex_connections_flight');
 	//Agrega campos del formulario
-	add_settings_field('iex_origen_criteria_location_type','Origen Criteria Type','iex_create_option_select','iex_oag_connections_flight_page','iex_oag_connections_flight_section',array(
-		'id'           => 'iex_origen_criteria_location_type',
-		'name'         => 'iex_connections_flight[origen_criteria_location_type]',
+	add_settings_field('iex_origin_criteria_location_type','Origen Criteria Type','iex_create_option_select','iex_oag_connections_flight_page','iex_oag_connections_flight_section',array(
+		'id'           => 'iex_origin_criteria_location_type',
+		'name'         => 'iex_connections_flight[origin_criteria_location_type]',
 		'select_opt'   => array(
 			'met_area' => 'M',
 			'airport'  => 'A'
 		), 
-		'param' => $options['origen_criteria_location_type']
+		'param' => $options['origin_criteria_location_type']
 	));
 	add_settings_field('iex_destination_criteria_location_type','Destination Criteria Type','iex_create_option_select','iex_oag_connections_flight_page','iex_oag_connections_flight_section',array(
 		'id'           => 'iex_destination_criteria_location_type',

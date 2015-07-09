@@ -25,6 +25,15 @@ function iex_create_input_text( $args ){
 	echo "<input type='text' id='{$args['id']}' name='{$args['name']}' value='{$args['param']}' />";
 }
 
+ /**
+  * iex_create_input_password( )
+  * 
+  * Crea un campo de entrada de texto
+  */
+function iex_create_input_password( $args ){
+	echo "<input type='password' id='{$args['id']}' name='{$args['name']}' value='{$args['param']}' />";
+}
+
 /**
  * iex_create_checkbox()
  * 
@@ -41,11 +50,11 @@ function iex_create_checkbox( $args ){
 
 /**********************************************************************************************************/
 /**
-  * iex_origen_criteria_location_type_input()
+  * iex_origin_criteria_location_type_input()
   * 
   * Crea un campo de texto para el parametro Origen Criteria Location Type
   */
- function iex_origen_criteria_location_type_input( $args ){
+ function iex_origin_criteria_location_type_input( $args ){
 	echo "<select id='{$args['id']}' name='{$args['name']}'>";
 	foreach($args[select_opt] as $key => $val){
 		if($val == $args['param'])
