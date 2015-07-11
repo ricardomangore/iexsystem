@@ -15,6 +15,8 @@ class DirectFlight{
 	private $include_road_feeder_service;
 	private $wide_to_narrow_indicator;
 	private $cargo_carrier_dupe_priority;
+	private $request_date_effective_from;
+	private $request_date_effective_to;
 	
 	
 	
@@ -30,7 +32,8 @@ class DirectFlight{
 		$this->include_road_feeder_service         = $options['include_road_feeder_service'];
 		$this->wide_to_narrow_indicator			   = $options['wide_to_narrow_indicator'];
 		$this->cargo_carrier_dupe_priority         = $options['cargo_carrier_dupe_priority'];
-		 
+		$this->request_date_effective_from		   = $options['request_date_effective_from'];
+		$this->request_date_effective_to    	   = $options['request_date_effective_to'];
 	}
 	
 	public function getOriginCriteria(){
@@ -127,6 +130,22 @@ class DirectFlight{
 	
 	public function setCargoCarrierDupePriority($cargo_carrier_dupe_priority){
 		$this->cargo_carrier_dupe_priority = $cargo_carrier_dupe_priority;
-	}							 
+	}	
+	
+	public function getRequestDateEffectiveFrom(){
+		return $this->request_date_effective_from;
+	}
+	
+	public function setRequestDateEffectiveFrom($request_date_effective_from){
+		$this->request_date_effective_from = $request_date_effective_from;
+	}
+	
+	public function getRequestDateEffectiveTo(){
+		return $this->request_date_effective_to;
+	}
+	
+	public function setRequestDateEffectiveTo($request_date_effective_to){
+		$this->request_date_effective_to = $request_date_effective_to;
+	}						 
 								 
 }

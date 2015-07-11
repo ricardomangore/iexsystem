@@ -26,6 +26,8 @@
 					'origin_criteria_location_type'      => 'M',   //Tipo de punto de partida 'M' para ciudad, 'A' para airopuerto
 					'destination_criteria_location_type' => 'M',   //Especifica el tipo de punto de llegada, 'M' - ciudad, 'A' - airopuerto
 					'request_time'						 => '12:00:00', //Encuentra todos los vuelos validos desde el momento de la petición
+					'request_date_effective_from'        => '', //(YYYY-MM-DD) Periodo preferido de envio
+					'request_date_effective_to'          => '', //(YYYY-MM-DD) Periodo preferido de envio
 					'carrier1_criteria'					 => '***', //Lista de códigos IATA/ICAO de aerolineas, solo vuelos de la lista pueden ser retornados. Si no es especificado algún valor, retorna todos los vuelos
 					'sort_order'						 => 'E', //Determina el orden de los vuelos retornados 'D'- departure date/time, 'A' arrival date/time, 'E' elapsed time order
 					'include_freighter'					 => ' ',  //Configuración para incluir aviones de carga, ' ' Espacio en blanco solo aviones de pasajeros, 'F'-aviones de carga, 'B'- aviones de carga y pasajero
@@ -45,6 +47,8 @@
 					'carrier1_criteria'                  => '***',//'***'-todas las aérolineas que operan en la ciudad o el aéropuerto son consideradas en la búsqueda, lista de codigos IATA/ICAO separados por coma para ser considerados ne la búsqueda
 					'carrier2_criteria'                  => '***',//'***'-todas las aérolineas que operan en la ciudad o el aéropuerto son consideradas en la búsqueda del vuelo subsecuente, lista de codigos IATA/ICAO separados por coma para ser considerados ne la búsqueda
 					'request_time'						 => '12:00:00', //Encuentra todos los vuelos validos desde el momento de la petición
+					'request_date_effective_from'        => '', //(YYYY-MM-DD) Periodo preferido de envio
+					'request_date_effective_to'          => '', //(YYYY-MM-DD) Periodo preferido de envio
 					'enable_online'						 => 'false',//Si esta opcion esta marcada como 'true' el vuel ode conexión debe ser el mismo que el de la primer aérolinea
 					'inter_airport_connections'          => 'false',//Si esta marcado como verdadero, el vuelo de conexión es atraves de la misma ciudad pero de diferentes aéropuertos
 					'low_cost_connections_indicator'     => '',//Indica si se requieren conexiones de bajo costo, ''-valor vacio es el valor por default, regresa conexiones que siguen los estandares requeridos por la industria, 'L'-conexiones de bajo costo, 'B'-ambas

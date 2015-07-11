@@ -23,6 +23,29 @@ function iex_load_scripts_to_cotizador(){
 
 }
 
+
+/**
+ * iex_flight_search()
+ */
+add_shortcode('iex_flight_search', 'iex_flight_search');
+function iex_flight_search(){
+	wp_register_script( 'select-picker-js', IEX_URL . '/js/plugins/select-picker/js/bootstrap-select.min.js', array('jquery'), "1", false );
+	wp_enqueue_script( 'select-picker-js' );
+	
+	wp_register_script( 'iex_flight_search-js', IEX_URL . '/js/libraries/iex_flight_search.js', array('jquery'), "1", false );
+	wp_enqueue_script( 'iex_flight_search-js' );
+	
+	ob_start();
+	$template = IEX_DIR_PATH . "/templates/flight_search_template.php";
+	
+	load_template($template);
+	
+	$temp_content = ob_get_contents();
+	ob_end_clean();
+	return $temp_content;
+}
+
+
 /**
  * 
  */

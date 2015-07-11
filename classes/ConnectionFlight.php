@@ -18,7 +18,6 @@ class ConnectionFlight extends DirectFlight{
 	public function __construct( $options ){
 															 	
 		parent::__construct( $options );
-				
 		$this->via1_criteria                  = $options['via1_criteria'];
 		$this->via1_criteria_location_type    = $options['via1_criteria_location_type'];
 		$this->carrier2_criteria              = $options['carrier2_criteria'];
