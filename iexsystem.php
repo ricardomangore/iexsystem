@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * coment
  * Plugin Name: Intermodal Express System Plugin
  * Description: Plugin con funcionalidades específicas de Intermodal Express 
  * Version: 1.0
